@@ -50,8 +50,9 @@ for article in articles:
     # Видимый текст статьи
     preview_text = article.get_text().lower()
 
-    # Проверка ключевые слова
+    # Проверяем ключевые слова по заголовку
     if any(keyword.lower() in preview_text for keyword in KEYWORDS):
         print(f"{date} – {title} – {link}")
+    # Проверяем ключевые слова по тексту статьи
     elif full_article_by_keywords(link, HEADERS, KEYWORDS):
         print(f"{date} – {title} – {link}")
