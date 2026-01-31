@@ -40,3 +40,7 @@ for article in articles:
 
     # Видимый текст статьи
     preview_text = article.get_text().lower()
+
+    # Проверка ключевые слова
+    if any(keyword.lower() in preview_text for keyword in KEYWORDS):
+        print(f"{date} – {title} – {link}")
