@@ -33,3 +33,7 @@ for article in articles:
     link = title_tag.find("a")["href"]
     if link.startswith("/"):
         link = "https://habr.com" + link
+
+    # Ищем дату
+    date_tag = article.find("time")
+    date = date_tag["datetime"][:10] if date_tag else "Без даты"
