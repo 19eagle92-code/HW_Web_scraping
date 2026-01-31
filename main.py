@@ -5,8 +5,13 @@ from full_article import full_article_by_keywords
 
 URL = "https://habr.com/ru/articles/"
 BASE_URL = "https://habr.com"
-HEADERS = {"User-Agent": "Mozilla/5.0"}
-
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
+}
 
 response = requests.get(URL, headers=HEADERS)
 # print(response.request.headers)
