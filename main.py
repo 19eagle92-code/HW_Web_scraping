@@ -1,5 +1,6 @@
 import requests
 import re
+from bs4 import BeautifulSoup
 
 URL = "https://habr.com/ru/articles/"
 
@@ -12,10 +13,18 @@ KEYWORDS = ["дизайн", "фото", "web", "python"]
 markup = response.text
 # print(markup)
 
-matches = re.findall(r"дизайн", markup)
-print(matches)
+soup = BeautifulSoup(markup, "html.parser")
+pretty_markup = soup.prettify()
+# print(pretty_markup)
 
+articles = soup.find_all("article")
+# print(len(articles))
 
-# for word in KEYWORDS:
-#     matches = re.findall(word, markup)
-#     print(f" для слова '{word}' найдено - {len(matches)} совпадений")
+for article in articles:
+    # Ищем заголовок
+    title_tag = article.find("h2")
+    # print(title_tag.text)
+    if not title_tag:
+        continue
+    title = title_tag.text.strip()
+    # print(title)
