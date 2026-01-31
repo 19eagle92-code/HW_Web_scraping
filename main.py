@@ -45,3 +45,5 @@ for article in articles:
     # Проверка ключевые слова
     if any(keyword.lower() in preview_text for keyword in KEYWORDS):
         print(f"{date} – {title} – {link}")
+    else:
+        print("По ключевым словам - статей не найденно")
