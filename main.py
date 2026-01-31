@@ -37,3 +37,6 @@ for article in articles:
     # Ищем дату
     date_tag = article.find("time")
     date = date_tag["datetime"][:10] if date_tag else "Без даты"
+
+    # Видимый текст статьи
+    preview_text = article.get_text().lower()
