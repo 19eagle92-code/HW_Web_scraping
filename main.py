@@ -28,3 +28,8 @@ for article in articles:
         continue
     title = title_tag.text.strip()
     # print(title)
+
+    # Ищем ссылку
+    link = title_tag.find("a")["href"]
+    if link.startswith("/"):
+        link = "https://habr.com" + link
