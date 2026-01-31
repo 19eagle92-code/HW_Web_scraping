@@ -32,7 +32,8 @@ for article in articles:
     # Ищем ссылку
     link = title_tag.find("a")["href"]
     if link.startswith("/"):
-        link = "https://habr.com" + link
+        base_url = "https://habr.com"
+        link = base_url + link
 
     # Ищем дату
     date_tag = article.find("time")
