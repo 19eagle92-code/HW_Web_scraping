@@ -1,10 +1,14 @@
 import requests
 import re
 from bs4 import BeautifulSoup
+from full_article import full_article_by_keywords
 
 URL = "https://habr.com/ru/articles/"
+BASE_URL = "https://habr.com"
+HEADERS = {"User-Agent": "Mozilla/5.0"}
 
-response = requests.get(URL)
+
+response = requests.get(URL, headers=HEADERS)
 # print(response.request.headers)
 
 # Определяем список ключевых слов:
@@ -32,8 +36,7 @@ for article in articles:
     # Ищем ссылку
     link = title_tag.find("a")["href"]
     if link.startswith("/"):
-        base_url = "https://habr.com"
-        link = base_url + link
+        link = BASE_URL + link
 
     # Ищем дату
     date_tag = article.find("time")
@@ -45,5 +48,5 @@ for article in articles:
     # Проверка ключевые слова
     if any(keyword.lower() in preview_text for keyword in KEYWORDS):
         print(f"{date} – {title} – {link}")
-    else:
-        print("По ключевым словам - статей не найденно")
+    elif full_article_by_keywords(link, HEADERS, KEYWORDS):
+        print(f"{date} – {title} – {link}")
